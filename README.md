@@ -7,3 +7,9 @@ This script does the follow:
 * unzips the .7z and .exe in the current directory
 * sets up the devkit
 * sets your environment variables
+
+Usage
+-----
+
+    rubyenv.bat [ session | user | machine ]
+

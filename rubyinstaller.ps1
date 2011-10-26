@@ -5,6 +5,9 @@ function Download-File {
 }
 
 function Install-Devkit($ruby_dir, $devkit_dir) {
+    if (Test-Path "$ruby_dir\lib\ruby\site_ruby\devkit.rb") { return }
+    $env:PATH = "$ruby_dir\bin"
+    Install-Devkit $ruby_dir $devkit_dir 
     & ruby $devkit_dir\dk.rb init | Out-Null 
     "- $ruby_dir".Replace("\", "/") | Out-File config.yml -NoClobber -Append -Encoding ASCII
     & ruby $devkit_dir\dk.rb install | Out-Null
@@ -24,12 +27,8 @@ function Install-Ruby {
     if (-not (Test-Path $ruby_dir)) { & .\7z.exe x -y $ruby_filename | Out-Null }
     if (-not (Test-Path $devkit_dir)) { & .\7z.exe x -y -odevkit $devkit_filename | Out-Null }
 
-    $path = $env:PATH
-    if (-not (Test-Path "$ruby_dir\lib\ruby\site_ruby\devkit.rb")) {
-        $env:PATH = "$ruby_dir\bin;$path"
-        Install-Devkit $ruby_dir $devkit_dir 
-    }
-    Write-Host "setx PATH `"$ruby_dir\bin;$ruby_dir\lib\ruby\gems\1.9.1\bin;$path`" -m"
+    Install-Devkit $ruby_dir $devkit_dir
+    Write-Host "$ruby_dir\bin;$ruby_dir\lib\ruby\gems\1.9.1\bin"
 }
 
 Install-Ruby
