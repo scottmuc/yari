@@ -13,9 +13,13 @@ del yari.tmp.cmd
 goto :end
 
 :usage
-echo This script will setup your ruby environment
+echo Sets up a ruby environment for you 
 echo. 
-echo rubyenv.bat version               sets ruby for the session
+echo rubyenv.bat [version] [-MachineScope]
+echo.
+echo   version          1.8.7, 1.9.2
+echo   -MachineScope    permanently sets your machines PATH otherwise it only
+echo                    sets it for the current session
 echo. 
 goto :end
 

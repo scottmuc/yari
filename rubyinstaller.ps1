@@ -1,9 +1,9 @@
 [CmdletBinding()]
 param(
     [Parameter(Position=0,Mandatory=$true)]
-    [string] $version,
+    [string] $Version,
     [Parameter(Position=1,Mandatory=$false)]
-    [string] $scope = "session"
+    [switch] $MachineScope
 )
 
 $ErrorActionPreference = "Stop"
@@ -61,10 +61,11 @@ function Install-Ruby {
 }
 
 function Create-TempEnvScript {
-    param( [string] $path_augmentation)
-    "set PATH=$path_augmentation;%PATH%
-ruby -v" | Out-File yari.tmp.cmd -Encoding ASCII
+    param( [string] $path_augmentation, [switch] $machine_scope)
+    $batch_script = "set PATH=$path_augmentation;%PATH%"
+    if ($machine_scope) { $batch_script += "`nsetx PATH `"$path_augmentation;%PATH%`" /M`n" }
+    $batch_script | Out-File yari.tmp.cmd -Encoding ASCII
 }
 
 $path_aug = Install-Ruby $version
-Create-TempEnvScript $path_aug
+Create-TempEnvScript $path_aug -machine_scope:$machineScope 
