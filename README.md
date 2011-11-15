@@ -3,13 +3,19 @@ Yet Another Ruby Installer
 
 This script does the follow:
 
-* downloads ruby 1.9.2-p290 and the devkit
+* downloads ruby and the devkit
 * unzips the .7z and .exe in the current directory
-* sets up the devkit
-* sets your environment variables
+* sets up the devkit in your ruby base
+* sets your environment variables (session or machine level)
 
 Usage
 -----
 
-    rubyenv.bat [ session | user | machine ]
+    Sets up a ruby environment for you
+    
+    rubyenv.bat [version] [-MachineScope]
+    
+      version          1.8.7, 1.9.2
+      -MachineScope    permanently sets your machines PATH otherwise it only
+                       sets it for the current session
 
