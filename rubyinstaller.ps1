@@ -31,11 +31,11 @@ function Download-File {
 
 function Install-Devkit {
     param($ruby_dir, $devkit_dir) 
+
     if (Test-Path "$ruby_dir\lib\ruby\site_ruby\devkit.rb") { return }
-    $env:PATH = "$ruby_dir\bin"
-    & ruby $devkit_dir\dk.rb init
+    & $ruby_dir\bin\ruby $devkit_dir\dk.rb init
     "- $ruby_dir".Replace("\", "/") | Out-File config.yml -NoClobber -Append -Encoding ASCII
-    & ruby $devkit_dir\dk.rb install
+    & $ruby_dir\bin\ruby $devkit_dir\dk.rb install
     del config.yml
 }
 
@@ -54,8 +54,8 @@ function Install-Ruby {
     $devkit_dir = "$here\devkit"
 
     pushd $here
-    if (-not (Test-Path $ruby_dir)) { & .\7z.exe x -y $ruby_filename }
-    if (-not (Test-Path $devkit_dir)) { & .\7z.exe x -y -odevkit $devkit_filename }
+    if (-not (Test-Path $ruby_dir)) { & .\7z.exe x -y $ruby_filename | Out-Null }
+    if (-not (Test-Path $devkit_dir)) { & .\7z.exe x -y -odevkit $devkit_filename | Out-Null }
     popd
 
     $gem_bin_dir = "$ruby_dir\$($registry.`"$version`".gem_path)"
@@ -65,9 +65,11 @@ function Install-Ruby {
 
 function Create-TempEnvScript {
     param( [string] $path_augmentation, [switch] $machine_scope)
-    $batch_script = "set PATH=$path_augmentation;%PATH%"
-    if ($machine_scope) { $batch_script += "`nsetx PATH `"$path_augmentation;%PATH%`" /M`n" }
-    $batch_script | Out-File $here\yari.tmp.cmd -Encoding ASCII
+
+    if ($machine_scope) {
+        [Environment]::SetEnvironmentVariable("PATH", "$path_augmentation;$($env:Path)", "Machine") 
+    }
+    "set PATH=$path_augmentation;%PATH%" | Out-File $here\yari.tmp.cmd -Encoding ASCII
 }
 
 $path_aug = Install-Ruby $version
