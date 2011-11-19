@@ -6,6 +6,7 @@ param(
     [switch] $MachineScope
 )
 
+$here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $ErrorActionPreference = "Stop"
 
 $registry = @{
@@ -23,7 +24,7 @@ $registry = @{
 }
 
 function Download-File {
-    param($url, $localFile = (Join-Path $pwd.Path $url.SubString($url.LastIndexOf('/') + 1)))
+    param($url, $localFile)
         $client = New-Object System.Net.WebClient
         $client.DownloadFile($url, $localFile)
 }
@@ -45,15 +46,17 @@ function Install-Ruby {
     $ruby_filename = $ruby_url.SubString($ruby_url.LastIndexOf('/') + 1)
     $devkit_filename = $devkit_url.SubString($devkit_url.LastIndexOf('/') + 1)
 
-    if (-not (Test-Path .\$ruby_filename)) { Download-File $ruby_url }
-    if (-not (Test-Path .\$devkit_filename)) { Download-File $devkit_url }
+    if (-not (Test-Path $here\$ruby_filename)) { Download-File $ruby_url $here\$ruby_filename }
+    if (-not (Test-Path $here\$devkit_filename)) { Download-File $devkit_url $here\$devkit_filename }
 
-    $ruby_archive = (Get-ChildItem $ruby_filename)
-    $ruby_dir = "$pwd\$($ruby_archive.BaseName)"
-    $devkit_dir = "$pwd\devkit"
+    $ruby_archive = (Get-ChildItem $here\$ruby_filename)
+    $ruby_dir = "$here\$($ruby_archive.BaseName)"
+    $devkit_dir = "$here\devkit"
 
-    if (-not (Test-Path $ruby_dir)) { & .\7z.exe x -y $ruby_filename | Out-Null }
-    if (-not (Test-Path $devkit_dir)) { & .\7z.exe x -y -odevkit $devkit_filename | Out-Null }
+    pushd $here
+    if (-not (Test-Path $ruby_dir)) { & .\7z.exe x -y $ruby_filename }
+    if (-not (Test-Path $devkit_dir)) { & .\7z.exe x -y -odevkit $devkit_filename }
+    popd
 
     $gem_bin_dir = "$ruby_dir\$($registry.`"$version`".gem_path)"
     Install-Devkit $ruby_dir $devkit_dir | Out-Host
@@ -64,7 +67,7 @@ function Create-TempEnvScript {
     param( [string] $path_augmentation, [switch] $machine_scope)
     $batch_script = "set PATH=$path_augmentation;%PATH%"
     if ($machine_scope) { $batch_script += "`nsetx PATH `"$path_augmentation;%PATH%`" /M`n" }
-    $batch_script | Out-File yari.tmp.cmd -Encoding ASCII
+    $batch_script | Out-File $here\yari.tmp.cmd -Encoding ASCII
 }
 
 $path_aug = Install-Ruby $version

@@ -1,15 +1,15 @@
 @echo off
 if "%*" == "" goto :usage
 
-@powershell -ExecutionPolicy RemoteSigned .\rubyinstaller.ps1 %*
+@powershell -ExecutionPolicy RemoteSigned %~dp0rubyinstaller.ps1 %*
 
-if not exist yari.tmp.cmd (
+if not exist %~dp0yari.tmp.cmd (
     echo something didn't work quite right...
     goto :usage
 )
 
-call yari.tmp.cmd
-del yari.tmp.cmd
+call %~dp0yari.tmp.cmd
+del %~dp0yari.tmp.cmd
 goto :end
 
 :usage
