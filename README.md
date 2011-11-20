@@ -1,21 +1,43 @@
-Yet Another Ruby Installer
-==========================
+# Yet Another Ruby Installer: yari
 
-This script does the follow:
+yari lets you install and switch between multiple versions of Ruby. Somewhat
+inspired by [rvm](http://beginrescueend.com/) and [rbenv](https://github.com/sstephenson/rbenv) 
+for unix like operating systems.
 
-* downloads ruby and the devkit
-* unzips the .7z and .exe in the current directory
-* sets up the devkit in your ruby base
-* sets your environment variables (session or machine level)
+### yari does...
 
-Usage
------
+* Install ruby versions defined in the hard-coded registry in the script
+* Download and configures the DevKit so you can install gems with native extensions
+* Let you change ruby versions for your console session 
+* Set the ruby version for the machine
 
-    Sets up a ruby environment for you
-    
-    rubyenv.bat [version] [-MachineScope]
-    
-      version          1.8.7, 1.9.2
-      -MachineScope    permanently sets your machines PATH otherwise it only
-                       sets it for the current session
+## How It Works
+
+yari will download and configure ruby to wherever you clone the yari. It will then modify
+your PATH so that the ruby version chosen will be used. 
+
+## Installation
+
+1. Check out somewhere (I persoanlly put in in %USERPROFILE%\.yari)
+
+        &gt; cd %USERPROFILE%
+        &gt; git clone git://github.com/scottmuc/yari.git .yari
+
+2. Add this location to your PATH
+
+        &gt; setx PATH %USERPROFILE%\.yari\bin
+
+   **Note**: if you already have something in your USER PATH environment variable
+   this will overwrite it. I'm working on fixing this.
+
+3. Restart a new shell
+
+## Usage
+
+1. Setup your shell session to use ruby 1.9.2
+
+        &gt; yari 1.9.2
+        &gt;
+        &gt; ruby -v
+        ruby 1.9.2p290 (2011-07-09) [i386-mingw32]
 
