@@ -18,14 +18,14 @@ your PATH so that the ruby version chosen will be used.
 
 ## Installation
 
-1. Check out somewhere (I persoanlly put in in %USERPROFILE%\.yari)
+1. Check out somewhere (I persoanlly put in in %USERPROFILE%\\.yari)
 
-        &gt; cd %USERPROFILE%
-        &gt; git clone git://github.com/scottmuc/yari.git .yari
+        > cd %USERPROFILE%
+        > git clone git://github.com/scottmuc/yari.git .yari
 
 2. Add this location to your PATH
 
-        &gt; setx PATH %USERPROFILE%\.yari\bin
+        > setx PATH %USERPROFILE%\.yari\bin
 
    **Note**: if you already have something in your USER PATH environment variable
    this will overwrite it. I'm working on fixing this.
@@ -36,8 +36,8 @@ your PATH so that the ruby version chosen will be used.
 
 1. Setup your shell session to use ruby 1.9.2
 
-        &gt; yari 1.9.2
-        &gt;
-        &gt; ruby -v
+        > yari 1.9.2
+        >
+        > ruby -v
         ruby 1.9.2p290 (2011-07-09) [i386-mingw32]
 
