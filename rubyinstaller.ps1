@@ -3,7 +3,7 @@ param(
     [Parameter(Position=0,Mandatory=$true)]
     [string] $Version,
     [Parameter(Position=1,Mandatory=$false)]
-    [switch] $MachineScope
+    [switch] $InstallMachine
 )
 
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -25,8 +25,9 @@ $registry = @{
 
 function Download-File {
     param($url, $localFile)
-        $client = New-Object System.Net.WebClient
-        $client.DownloadFile($url, $localFile)
+
+    $client = New-Object System.Net.WebClient
+    $client.DownloadFile($url, $localFile)
 }
 
 function Install-Devkit {
@@ -60,7 +61,7 @@ function Install-Ruby {
 
     $gem_bin_dir = "$ruby_dir\$($registry.`"$version`".gem_path)"
     Install-Devkit $ruby_dir $devkit_dir | Out-Host
-    return "$ruby_dir\bin;$gem_bin_dir"
+    return "$ruby_dir\bin"
 }
 
 function Create-TempEnvScript {
@@ -69,8 +70,9 @@ function Create-TempEnvScript {
     if ($machine_scope) {
         [Environment]::SetEnvironmentVariable("PATH", "$path_augmentation;$($env:Path)", "Machine") 
     }
+    $env:Path = "$path_augmentation;$($env:Path)"
     "set PATH=$path_augmentation;%PATH%" | Out-File $here\yari.tmp.cmd -Encoding ASCII
 }
 
 $path_aug = Install-Ruby $version
-Create-TempEnvScript $path_aug -machine_scope:$machineScope 
+Create-TempEnvScript $path_aug -machine_scope:$InstallMachine 

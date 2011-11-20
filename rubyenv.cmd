@@ -15,10 +15,10 @@ goto :end
 :usage
 echo Sets up a ruby environment for you 
 echo. 
-echo rubyenv.bat [version] [-MachineScope]
+echo rubyenv [version] [-InstallMachine]
 echo.
 echo   version          1.8.7, 1.9.2
-echo   -MachineScope    permanently sets your machines PATH otherwise it only
+echo   -InstallMachine  permanently sets your machines PATH otherwise it only
 echo                    sets it for the current session
 echo. 
 goto :end
