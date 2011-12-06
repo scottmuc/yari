@@ -32,6 +32,12 @@ your PATH so that the ruby version chosen will be used.
 
 3. Restart a new shell
 
+### Experimental Installation
+
+Copy and paste the following in a Powershell Prompt
+
+        PS > (new-object Net.Webclient).DownloadString("https://github.com/scottmuc/yari/raw/master/installer.ps1") | iex
+
 ## Usage
 
 1. Setup your shell session to use ruby 1.9.2
