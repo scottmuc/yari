@@ -20,8 +20,8 @@ function Download {
     (new-object Net.WebClient).DownloadFile($url, $file)
 }
 
-Download "https://raw.github.com/scottmuc/yari/blob/master/7z.exe?raw=true" $7zip_exe
-Download "https://raw.github.com/scottmuc/yari/blob/master/7z.dll?raw=true" $7zip_dll
+Download "https://github.com/scottmuc/yari/blob/master/7z.exe?raw=true" $7zip_exe
+Download "https://github.com/scottmuc/yari/blob/master/7z.dll?raw=true" $7zip_dll
 Download "https://github.com/scottmuc/yari/zipball/master" $yari_zip
 
 pushd $stage
