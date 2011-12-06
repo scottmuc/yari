@@ -36,7 +36,7 @@ your PATH so that the ruby version chosen will be used.
 
 Copy and paste the following in a Powershell Prompt
 
-        (new-object Net.Webclient).DownloadString("https://raw.github.com/scottmuc/yari/raw/master/installer.ps1") | iex
+        (new-object Net.Webclient).DownloadString("https://github.com/scottmuc/yari/raw/master/installer.ps1") | iex
 
 ## Usage
 
