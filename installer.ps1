@@ -20,8 +20,8 @@ function Download {
     (new-object Net.WebClient).DownloadFile($url, $file)
 }
 
-Download "https://github.com/scottmuc/yari/blob/master/7z.exe?raw=true" $7zip_exe
-Download "https://github.com/scottmuc/yari/blob/master/7z.dll?raw=true" $7zip_dll
+Download "https://raw.github.com/scottmuc/yari/blob/master/7z.exe?raw=true" $7zip_exe
+Download "https://raw.github.com/scottmuc/yari/blob/master/7z.dll?raw=true" $7zip_dll
 Download "https://github.com/scottmuc/yari/zipball/master" $yari_zip
 
 pushd $stage
@@ -33,7 +33,7 @@ $extracted_path = (Resolve-Path $stage\*-yari-*).Path + "\*"
 Copy-Item $extracted_path $target_path -Recurse
 
 $user_PATH = [Environment]::GetEnvironmentVariable("PATH", "User")
-$PATH_aug  = "%USERPROFILE\.yari\bin"
+$PATH_aug  = "%USERPROFILE%\.yari\bin"
 
 if ($user_PATH -eq $null) { $user_PATH = "" }
 
