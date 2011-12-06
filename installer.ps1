@@ -33,7 +33,7 @@ $extracted_path = (Resolve-Path $stage\*-yari-*).Path + "\*"
 Copy-Item $extracted_path $target_path -Recurse
 
 $user_PATH = [Environment]::GetEnvironmentVariable("PATH", "User")
-$PATH_aug  = "%USERPROFILE%\.yari\bin"
+$PATH_aug  = "$($env:UserProfile)\.yari\bin"
 
 if ($user_PATH -eq $null) { $user_PATH = "" }
 
