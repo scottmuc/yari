@@ -76,3 +76,5 @@ function Create-TempEnvScript {
 
 $path_aug = Install-Ruby $version
 Create-TempEnvScript $path_aug -machine_scope:$InstallMachine 
+
+"Ruby and Devkit installed successfully! Located at: '$here'" | write-Host -f Green
