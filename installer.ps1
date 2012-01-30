@@ -6,6 +6,10 @@ $7zip_dll = "$stage\7z.dll"
 $yari_zip = "$stage\yari.zip"
 $target_path = "$($env:UserProfile)\.yari"
 
+if ($target_path.Contains(" ")) {
+    $target_path = Read-Host "Enter a target path (no spaces allowed) for the yari installation, e.g. C:\yari"
+}
+
 if (Test-Path $stage) { Remove-Item $stage -Recurse -Force }
 if (Test-Path $target_path) { Remove-Item $target_path -Recurse -Force }
 
@@ -33,7 +37,7 @@ $extracted_path = (Resolve-Path $stage\*-yari-*).Path + "\*"
 Copy-Item $extracted_path $target_path -Recurse
 
 $user_PATH = [Environment]::GetEnvironmentVariable("PATH", "User")
-$PATH_aug  = "$($env:UserProfile)\.yari\bin"
+$PATH_aug  = "$($target_path)\bin"
 
 if ($user_PATH -eq $null) { $user_PATH = "" }
 
@@ -41,4 +45,4 @@ if (-not $user_PATH.Contains($PATH_aug)) {
     [Environment]::SetEnvironmentVariable("PATH", "$PATH_aug;$user_PATH", "User") 
 }
 
-"yari successfully installed!" | write-Host -f Green
+"yari successfully installed to location: '$target_path' !" | write-Host -f Green
