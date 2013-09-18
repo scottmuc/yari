@@ -18,7 +18,7 @@ your PATH so that the ruby version chosen will be used.
 
 ## Installation
 
-1. Check out somewhere (I persoanlly put in in %USERPROFILE%\\.yari)
+1. Check out somewhere (I personally put in in %USERPROFILE%\\.yari)
 
         > cd %USERPROFILE%
         > git clone git://github.com/scottmuc/yari.git .yari
