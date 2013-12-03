@@ -22,6 +22,10 @@ $registry = @{
         "url" = "http://rubyforge.org/frs/download.php/76055/ruby-1.9.3-p194-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\1.9.1\bin"
     };
+    "2.0.0" = @{
+        "url" = "http://rubyforge.org/frs/download.php/76807/ruby-2.0.0-p0-i386-mingw32.7z";
+        "gem_path" = "lib\ruby\gems\2.0.0\bin"
+    };
     "devkit" = @{
         "url" = "http://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20110712-1620-sfx.exe"
     }
