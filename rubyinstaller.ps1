@@ -11,19 +11,20 @@ $ErrorActionPreference = "Stop"
 
 $registry = @{
     "1.8.7" = @{
-        "url" = "http://rubyforge.org/frs/download.php/74296/ruby-1.8.7-p334-i386-mingw32.7z";
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.8.7-p374-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\1.8\bin"
     };
-    "1.9.2" = @{
-        "url" = "http://rubyforge.org/frs/download.php/75128/ruby-1.9.2-p290-i386-mingw32.7z";
-        "gem_path" = "lib\ruby\gems\1.9.1\bin"
-    };
+    # Since i did not find the 1.9.2 download link, i remove it's support.
+    #"1.9.2" = @{
+    #    "url" = "http://rubyforge.org/frs/download.php/75128/ruby-1.9.2-p290-i386-mingw32.7z";
+    #    "gem_path" = "lib\ruby\gems\1.9.1\bin"
+    #};
     "1.9.3" = @{
-        "url" = "http://rubyforge.org/frs/download.php/76055/ruby-1.9.3-p194-i386-mingw32.7z";
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.9.3-p448-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\1.9.1\bin"
     };
     "2.0.0" = @{
-        "url" = "http://rubyforge.org/frs/download.php/76807/ruby-2.0.0-p0-i386-mingw32.7z";
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p247-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\2.0.0\bin"
     };
     "devkit" = @{
