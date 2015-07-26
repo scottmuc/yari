@@ -12,7 +12,8 @@ $ErrorActionPreference = "Stop"
 $registry = @{
     "1.8.7" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.8.7-p374-i386-mingw32.7z";
-        "gem_path" = "lib\ruby\gems\1.8\bin"
+        "gem_path" = "lib\ruby\gems\1.8\bin";
+        "devkit" = "devkit1"
     };
     # Since i did not find the 1.9.2 download link, i remove it's support.
     #"1.9.2" = @{
@@ -21,17 +22,24 @@ $registry = @{
     #};
     "1.9.3" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.9.3-p551-i386-mingw32.7z";
-        "gem_path" = "lib\ruby\gems\1.9.1\bin"
+        "gem_path" = "lib\ruby\gems\1.9.1\bin";
+        "devkit" = "devkit1"
     };
     "2.0.0" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p645-i386-mingw32.7z";
-        "gem_path" = "lib\ruby\gems\2.0.0\bin"
+        "gem_path" = "lib\ruby\gems\2.0.0\bin";
+        "devkit" = "devkit2"
     };
     "2.2.2" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.2-i386-mingw32.7z";
-        "gem_path" = "lib\ruby\gems\2.2.0\bin"
-    "devkit" = @{
-        "url" = "http://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20110712-1620-sfx.exe"
+        "gem_path" = "lib\ruby\gems\2.2.0\bin";
+        "devkit" = "devkit2"
+    };
+    "devkit1" = @{
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
+    }
+    "devkit2" = @{
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
     }
 }
 
@@ -55,7 +63,8 @@ function Install-Devkit {
 function Install-Ruby {
     param($version)
     $ruby_url = $registry."$version".url 
-    $devkit_url = $registry.devkit.url 
+    $devkit = $registry."$version".devkit
+    $devkit_url = $registry."$devkit".url 
     $ruby_filename = $ruby_url.SubString($ruby_url.LastIndexOf('/') + 1)
     $devkit_filename = $devkit_url.SubString($devkit_url.LastIndexOf('/') + 1)
 
@@ -64,11 +73,11 @@ function Install-Ruby {
 
     $ruby_archive = (Get-ChildItem $here\$ruby_filename)
     $ruby_dir = "$here\$($ruby_archive.BaseName)"
-    $devkit_dir = "$here\devkit"
+    $devkit_dir = "$here\$devkit"
 
     pushd $here
     if (-not (Test-Path $ruby_dir)) { & .\7z.exe x -y $ruby_filename | Out-Null }
-    if (-not (Test-Path $devkit_dir)) { & .\7z.exe x -y -odevkit $devkit_filename | Out-Null }
+    if (-not (Test-Path $devkit_dir)) { & .\7z.exe x -y -o"$devkit" $devkit_filename | Out-Null }
     popd
 
     $gem_bin_dir = "$ruby_dir\$($registry.`"$version`".gem_path)"
