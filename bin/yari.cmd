@@ -17,7 +17,7 @@ echo Sets up a ruby environment for you
 echo. 
 echo rubyenv [version] [-InstallMachine]
 echo.
-echo   version          1.8.7, 1.9.3, 2.0.0
+echo   version          1.8.7, 1.9.3, 2.0.0, 2.2.2
 echo   -InstallMachine  permanently sets your machines PATH otherwise it only
 echo                    sets it for the current session
 echo. 

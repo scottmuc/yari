@@ -27,6 +27,9 @@ $registry = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p645-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\2.0.0\bin"
     };
+    "2.2.2" = @{
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.2-i386-mingw32.7z";
+        "gem_path" = "lib\ruby\gems\2.2.0\bin"
     "devkit" = @{
         "url" = "http://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20110712-1620-sfx.exe"
     }
