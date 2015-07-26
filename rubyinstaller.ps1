@@ -20,11 +20,11 @@ $registry = @{
     #    "gem_path" = "lib\ruby\gems\1.9.1\bin"
     #};
     "1.9.3" = @{
-        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.9.3-p448-i386-mingw32.7z";
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.9.3-p551-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\1.9.1\bin"
     };
     "2.0.0" = @{
-        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p247-i386-mingw32.7z";
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p645-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\2.0.0\bin"
     };
     "devkit" = @{
