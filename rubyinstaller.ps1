@@ -13,7 +13,7 @@ $registry = @{
     "1.8.7" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.8.7-p374-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\1.8\bin";
-        "devkit" = "devkit4.5.2"
+        "devkit" = "devkit-4.5.2"
     };
     # Since i did not find the 1.9.2 download link, i remove it's support.
     #"1.9.2" = @{
@@ -23,22 +23,22 @@ $registry = @{
     "1.9.3" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.9.3-p551-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\1.9.1\bin";
-        "devkit" = "devkit4.5.2"
+        "devkit" = "devkit-4.5.2"
     };
     "2.0.0" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p645-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\2.0.0\bin";
-        "devkit" = "devkit4.7.2"
+        "devkit" = "devkit-4.7.2"
     };
     "2.2.2" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.2-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\2.2.0\bin";
-        "devkit" = "devkit4.7.2"
+        "devkit" = "devkit-4.7.2"
     };
-    "devkit4.5.2" = @{
+    "devkit-4.5.2" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
     }
-    "devkit4.7.2" = @{
+    "devkit-4.7.2" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
     }
 }
