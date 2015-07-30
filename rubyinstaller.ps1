@@ -30,6 +30,11 @@ $registry = @{
         "gem_path" = "lib\ruby\gems\2.0.0\bin";
         "devkit" = "devkit-4.7.2"
     };
+    "2.1.6" = @{
+        "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.1.6-i386-mingw32.7z";
+        "gem_path" = "lib\ruby\gems\2.1.0\bin";
+        "devkit" = "devkit-4.7.2"
+    };
     "2.2.2" = @{
         "url" = "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.2-i386-mingw32.7z";
         "gem_path" = "lib\ruby\gems\2.2.0\bin";
