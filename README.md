@@ -1,5 +1,9 @@
 # Yet Another Ruby Installer: yari
 
+```diff
+- this project is no longer maintained
+```
+
 yari lets you install and switch between multiple versions of Ruby. Somewhat
 inspired by [rvm](http://beginrescueend.com/) and [rbenv](https://github.com/sstephenson/rbenv) 
 for unix like operating systems.
